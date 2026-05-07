@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suzhou Yitu Technology Co., Ltd.</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+      color: #2c2c2c;
+      background: #ffffff;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(10, 30, 60, 0.97);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900; color: #0a1e3c;
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-text .cn { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+    .logo-text .en { font-size: 10px; color: #c8a84b; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    nav { display: flex; align-items: center; gap: 28px; }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav ul li a {
+      color: #ccd6f6; font-size: 14px; font-weight: 500;
+      transition: color 0.25s; padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+    nav ul li a:hover { color: #c8a84b; border-bottom-color: #c8a84b; }
+
+    /* Language switch button */
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(200,168,75,0.15);
+      border: 1px solid rgba(200,168,75,0.5);
+      color: #c8a84b;
+      font-size: 13px; font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .lang-btn:hover { background: rgba(200,168,75,0.28); }
+
+    /* ===== HERO ===== */
+    #hero {
+      height: 100vh;
+      background: linear-gradient(160deg, #0a1e3c 0%, #0d3060 50%, #0a2248 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 0 5%;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='rgba(200,168,75,0.08)' stroke-width='1'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200,168,75,0.15);
+      border: 1px solid rgba(200,168,75,0.4);
+      color: #c8a84b; font-size: 12px; letter-spacing: 3px;
+      padding: 6px 20px; border-radius: 20px; margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-size: clamp(28px, 4.5vw, 54px); font-weight: 800;
+      color: #ffffff; line-height: 1.2; margin-bottom: 16px;
+    }
+    .hero-title span { color: #c8a84b; }
+    .hero-subtitle {
+      font-size: clamp(15px, 1.8vw, 19px); color: #a8b8d8;
+      margin-bottom: 48px; max-width: 640px;
+      margin-left: auto; margin-right: auto; line-height: 1.8;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      color: #0a1e3c; font-weight: 700; padding: 14px 38px;
+      border-radius: 30px; font-size: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(200,168,75,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,168,75,0.5); }
+    .btn-outline {
+      border: 2px solid rgba(200,168,75,0.6); color: #c8a84b;
+      padding: 12px 36px; border-radius: 30px; font-size: 15px; transition: all 0.2s;
+    }
+    .btn-outline:hover { background: rgba(200,168,75,0.1); }
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(200,168,75,0.6); font-size: 11px; letter-spacing: 2px;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint::after {
+      content: ""; width: 1px; height: 36px;
+      background: linear-gradient(to bottom, rgba(200,168,75,0.6), transparent);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== STATS BAR ===== */
+    #stats {
+      background: linear-gradient(135deg, #c8a84b, #d4b45a);
+      padding: 40px 5%;
+    }
+    .stats-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px; text-align: center;
+    }
+    .stat-item .num { font-size: 36px; font-weight: 800; color: #0a1e3c; line-height: 1; }
+    .stat-item .unit { font-size: 16px; font-weight: 600; color: #0a1e3c; }
+    .stat-item .label { font-size: 13px; color: rgba(10,30,60,0.7); margin-top: 6px; }
+
+    /* ===== COMMON SECTION ===== */
+    section { padding: 90px 5%; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-tag {
+      display: inline-block; color: #c8a84b; font-size: 12px;
+      font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; color: #0a1e3c; line-height: 1.3; }
+    .section-title em { color: #c8a84b; font-style: normal; }
+    .section-desc { font-size: 15px; color: #666; max-width: 580px; margin: 16px auto 0; line-height: 1.9; }
+    .divider {
+      width: 50px; height: 3px;
+      background: linear-gradient(90deg, #c8a84b, #e8c96a);
+      border-radius: 2px; margin: 16px auto 0;
+    }
+
+    /* ===== BUSINESS ===== */
+    #business { background: #f7f8fc; }
+    .biz-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;
+    }
+    .biz-card {
+      background: #fff; border-radius: 16px; padding: 40px 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .biz-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, #c8a84b, #e8c96a);
+    }
+    .biz-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .biz-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, rgba(200,168,75,0.12), rgba(232,201,106,0.2));
+      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 30px; margin-bottom: 24px;
+    }
+    .biz-card h3 { font-size: 20px; font-weight: 700; color: #0a1e3c; margin-bottom: 12px; }
+    .biz-card p { font-size: 14px; color: #666; line-height: 1.9; }
+    .biz-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .tag {
+      background: rgba(200,168,75,0.1); color: #a07820; font-size: 12px;
+      padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(200,168,75,0.3);
+    }
+
+    /* ===== ABOUT ===== */
+    #about { background: #fff; }
+    .about-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+    }
+    .about-img-box {
+      background: linear-gradient(145deg, #0a1e3c, #0d3060);
+      border-radius: 20px; padding: 56px 40px; text-align: center; color: #fff;
+    }
+    .about-img-box .big-icon { font-size: 72px; margin-bottom: 20px; }
+    .about-img-box h3 { font-size: 20px; font-weight: 700; color: #c8a84b; margin-bottom: 8px; }
+    .about-img-box p { font-size: 13px; color: #a8b8d8; line-height: 1.8; }
+    .about-visual { position: relative; }
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      color: #0a1e3c; padding: 14px 20px; border-radius: 14px;
+      font-weight: 800; font-size: 13px;
+      box-shadow: 0 8px 24px rgba(200,168,75,0.4); text-align: center;
+    }
+    .about-badge .yr { font-size: 28px; line-height: 1; display: block; }
+    .about-text .label { font-size: 12px; color: #c8a84b; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
+    .about-text h2 { font-size: clamp(22px, 2.8vw, 34px); font-weight: 800; color: #0a1e3c; line-height: 1.3; margin-bottom: 20px; }
+    .about-text p { font-size: 14px; color: #555; line-height: 2; margin-bottom: 16px; }
+    .about-list { list-style: none; margin-top: 24px; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 14px; font-size: 14px; color: #444; line-height: 1.7;
+    }
+    .about-list li .check {
+      flex-shrink: 0; width: 20px; height: 20px;
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #0a1e3c; font-weight: 700; margin-top: 2px;
+    }
+
+    /* ===== ADVANTAGES ===== */
+    #advantage { background: linear-gradient(160deg, #0a1e3c 0%, #0d3060 100%); }
+    #advantage .section-title { color: #fff; }
+    #advantage .section-tag { color: #c8a84b; }
+    #advantage .divider { background: linear-gradient(90deg, #c8a84b, transparent); }
+    .adv-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px;
+    }
+    .adv-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.2);
+      border-radius: 16px; padding: 36px 28px; text-align: center;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .adv-card:hover { background: rgba(200,168,75,0.08); transform: translateY(-4px); }
+    .adv-icon { font-size: 40px; margin-bottom: 16px; }
+    .adv-card h4 { font-size: 17px; font-weight: 700; color: #c8a84b; margin-bottom: 10px; }
+    .adv-card p { font-size: 13px; color: #a8b8d8; line-height: 1.9; }
+
+    /* ===== PROCESS ===== */
+    #process { background: #f7f8fc; }
+    .process-steps { max-width: 1000px; margin: 0 auto; position: relative; }
+    .process-steps::before {
+      content: ""; position: absolute;
+      top: 28px; left: calc(50% - 1px);
+      width: 2px; height: calc(100% - 56px);
+      background: linear-gradient(to bottom, #c8a84b, rgba(200,168,75,0.1));
+    }
+    .step { display: flex; gap: 32px; margin-bottom: 40px; align-items: flex-start; }
+    .step:nth-child(even) { flex-direction: row-reverse; text-align: right; }
+    .step-num {
+      flex-shrink: 0; width: 56px; height: 56px;
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 800; color: #0a1e3c;
+      box-shadow: 0 4px 16px rgba(200,168,75,0.4); position: relative; z-index: 1;
+    }
+    .step-content {
+      flex: 1; background: #fff; border-radius: 14px; padding: 24px 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .step-content h4 { font-size: 17px; font-weight: 700; color: #0a1e3c; margin-bottom: 8px; }
+    .step-content p { font-size: 13px; color: #666; line-height: 1.8; }
+
+    /* ===== CONTACT ===== */
+    #contact { background: #fff; }
+    .contact-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start;
+    }
+    .contact-info h3 { font-size: 22px; font-weight: 700; color: #0a1e3c; margin-bottom: 24px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .ci-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(200,168,75,0.12), rgba(232,201,106,0.2));
+      border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+    .ci-text .ci-label { font-size: 12px; color: #999; margin-bottom: 4px; }
+    .ci-text .ci-val { font-size: 15px; color: #222; font-weight: 600; }
+    .contact-form { background: #f7f8fc; border-radius: 20px; padding: 40px 36px; }
+    .contact-form h3 { font-size: 20px; font-weight: 700; color: #0a1e3c; margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; font-weight: 500; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px 16px; border: 1.5px solid #e0e0e0; border-radius: 10px;
+      font-size: 14px; color: #333; background: #fff; transition: border-color 0.2s; font-family: inherit;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: #c8a84b;
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%; background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      color: #0a1e3c; font-weight: 700; font-size: 15px; padding: 14px;
+      border: none; border-radius: 10px; cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s; font-family: inherit;
+    }
+    .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ===== FOOTER ===== */
+    footer { background: #060f20; color: #a8b8d8; padding: 56px 5% 28px; }
+    .footer-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+      padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand .fn { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .footer-brand .fe { font-size: 11px; color: #c8a84b; letter-spacing: 2px; margin-bottom: 16px; }
+    .footer-brand p { font-size: 13px; line-height: 1.9; }
+    .footer-col h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { font-size: 13px; margin-bottom: 10px; }
+    .footer-col ul li a { color: #a8b8d8; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: #c8a84b; }
+    .footer-bottom {
+      max-width: 1100px; margin: 24px auto 0;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: #556; flex-wrap: wrap; gap: 8px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav ul { gap: 16px; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .process-steps::before { display: none; }
+      .step, .step:nth-child(even) { flex-direction: column; text-align: left; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      #hero { padding: 0 6%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">鎬?/div>
+    <div class="logo-text">
+      <span class="cn">鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</span>
+      <span class="en">Suzhou Yitu Technology Co., Ltd.</span>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#business">Business</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#advantage">Advantages</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="index.html" class="lang-btn">馃寪 涓枃</a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Non-Ferrous Metals 路 Green Circular Economy</div>
+    <h1 class="hero-title">Suzhou Yitu<br/><span>Technology Co., Ltd.</span></h1>
+    <p class="hero-subtitle">
+      Specializing in non-ferrous metal ore trading and scrap metal recycling,
+      we deliver safe, efficient, and sustainable metal resource solutions through a robust supply chain network.
+    </p>
+    <div class="hero-btns">
+      <a href="#business" class="btn-primary">Our Business</a>
+      <a href="#contact" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- ===== STATS BAR ===== -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div><span class="num">100</span><span class="unit">+</span></div>
+      <div class="label">Business Partners</div>
+    </div>
+    <div class="stat-item">
+      <div><span class="num">15</span><span class="unit">+</span></div>
+      <div class="label">Metal Categories</div>
+    </div>
+    <div class="stat-item">
+      <div><span class="num">24</span><span class="unit">h</span></div>
+      <div class="label">Professional Response</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BUSINESS ===== -->
+<section id="business">
+  <div class="section-header">
+    <span class="section-tag">Business Scope</span>
+    <h2 class="section-title">Our <em>Core Business</em></h2>
+    <div class="divider"></div>
+    <p class="section-desc">Built on professional expertise and compliance, we focus on the circulation and recycling of non-ferrous metal resources to drive efficient industrial chains.</p>
+  </div>
+  <div class="biz-grid">
+
+    <div class="biz-card">
+      <div class="biz-icon">馃</div>
+      <h3>Non-Ferrous Metal Ore Trading</h3>
+      <p>Specializing in domestic and international trade of copper, aluminum, zinc, lead, nickel, tin, and other major non-ferrous metal ores. We provide end-to-end supply chain services from procurement and warehousing to delivery, ensuring stable supply and quality control.</p>
+      <div class="biz-tags">
+        <span class="tag">Copper Ore</span>
+        <span class="tag">Aluminum Ore</span>
+        <span class="tag">Zinc Ore</span>
+        <span class="tag">Lead Ore</span>
+        <span class="tag">Nickel Ore</span>
+        <span class="tag">Tin Ore</span>
+        <span class="tag">Rare Metals</span>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-icon">鈾伙笍</div>
+      <h3>Scrap Metal Recycling</h3>
+      <p>Driven by a green circular economy philosophy, we systematically conduct professional recycling, sorting, testing, and resale of scrap copper, aluminum, stainless steel, and other metals. Our compliant recycling network enables efficient utilization of secondary resources.</p>
+      <div class="biz-tags">
+        <span class="tag">Scrap Copper</span>
+        <span class="tag">Scrap Aluminum</span>
+        <span class="tag">Stainless Scrap</span>
+        <span class="tag">Lead Batteries</span>
+        <span class="tag">E-Waste</span>
+        <span class="tag">Industrial Offcuts</span>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-icon">馃寪</div>
+      <h3>Integrated Supply Chain Services</h3>
+      <p>Integrating domestic and international resource channels, we offer value-added services including market intelligence, trade matchmaking, logistics support, and quality certification 鈥?helping clients reduce procurement costs and optimize resource efficiency.</p>
+      <div class="biz-tags">
+        <span class="tag">Import & Export</span>
+        <span class="tag">Market Advisory</span>
+        <span class="tag">Quality Certification</span>
+        <span class="tag">Logistics Support</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-img-box">
+        <div class="big-icon">馃彮</div>
+        <h3>Suzhou Yitu Technology Co., Ltd.</h3>
+        <p>Registered in Suzhou, Jiangsu Province<br/>Non-Ferrous Metal Trading & Scrap Recycling<br/>Integrity 路 Compliance 路 Green Development</p>
+      </div>
+      <div class="about-badge"><span class="yr">100+</span>Partners</div>
+    </div>
+    <div class="about-text">
+      <div class="label">About Us</div>
+      <h2>Professional Trading,<br/>Driving the Green Circular Economy</h2>
+      <p>Suzhou Yitu Technology Co., Ltd. is a professional enterprise headquartered in Suzhou, dedicated to non-ferrous metal ore trading and scrap metal recycling. Guided by our core principle of "integrity, circular economy, and win-win development," we leverage the strategic advantage of Suzhou and the Yangtze River Delta region to build an integrated business chain covering ore sourcing, scrap recovery, and trade circulation.</p>
+      <p>Our experienced industry team and comprehensive compliance framework strictly adhere to national regulations governing scrap metal recycling and non-ferrous metal trading. We actively fulfill our environmental responsibilities as a committed participant in metal resource recycling and the green economy.</p>
+      <ul class="about-list">
+        <li><div class="check">鉁?/div>Licensed for non-ferrous metal resource import & export with stable, reliable supply channels</li>
+        <li><div class="check">鉁?/div>Comprehensive scrap metal recycling qualifications and environmental compliance systems</li>
+        <li><div class="check">鉁?/div>Extensive warehousing, logistics, and distribution network across the Yangtze River Delta</li>
+        <li><div class="check">鉁?/div>Experienced professional team providing accurate market analysis and support</li>
+        <li><div class="check">鉁?/div>100+ industry partners ensuring a stable and efficient supply chain</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ADVANTAGES ===== -->
+<section id="advantage">
+  <div class="section-header">
+    <span class="section-tag">Core Advantages</span>
+    <h2 class="section-title" style="color:#fff;">Our <em>Core Advantages</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="adv-grid">
+    <div class="adv-card">
+      <div class="adv-icon">馃敆</div>
+      <h4>Stable Supply Channels</h4>
+      <p>Long-term partnerships with premium domestic and international mines and recyclers ensure ample, stable supply and a secure supply chain.</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃洝锔?/div>
+      <h4>Compliance Framework</h4>
+      <p>Strictly compliant with national regulations, holding all required business licenses and environmental credentials for lawful operations.</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃敩</div>
+      <h4>Professional Testing</h4>
+      <p>Partnering with authoritative inspection agencies for precise assay and grading, ensuring fair and transparent transactions.</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃殯</div>
+      <h4>Efficient Logistics</h4>
+      <p>Integrating Delta-region logistics resources with full warehousing, loading, and transportation coverage for safe, on-time delivery.</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃搳</div>
+      <h4>Market Intelligence</h4>
+      <p>Our specialists continuously monitor global metal markets, providing clients with forward-looking analysis and strategic procurement advice.</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃尡</div>
+      <h4>Green Circular Philosophy</h4>
+      <p>Committed to promoting metal resource recycling, we actively embrace sustainable development and help clients fulfill ESG obligations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="process">
+  <div class="section-header">
+    <span class="section-tag">Service Process</span>
+    <h2 class="section-title">Our <em>Service Process</em></h2>
+    <div class="divider"></div>
+    <p class="section-desc">A transparent, efficient, and professional process 鈥?we accompany you at every step to ensure smooth transaction execution.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>Needs Assessment</h4>
+        <p>In-depth consultation to clearly define the metal types, specifications, quantities, and quality requirements for procurement or recycling.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>Supply Matching & Quotation</h4>
+        <p>Leveraging our supply chain network to precisely match supply, with transparent pricing based on current market conditions.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>Quality Inspection & Contract</h4>
+        <p>Third-party quality testing and grading, followed by formal contract signing to protect the interests of both parties.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h4>Logistics & Delivery</h4>
+        <p>Coordinating end-to-end warehousing, loading, and transportation with full cargo tracking to ensure safe, on-time delivery.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h4>After-Sales & Follow-Up</h4>
+        <p>Ongoing client follow-up and advisory support after delivery, building long-term partnerships based on trust and satisfaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-tag">Contact Us</span>
+    <h2 class="section-title"><em>Get in Touch</em></h2>
+    <div class="divider"></div>
+    <p class="section-desc">We welcome business inquiries and partnership discussions. Our team will respond promptly.</p>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h3>Contact Information</h3>
+      <div class="contact-item">
+        <div class="ci-icon">馃搷</div>
+        <div class="ci-text">
+          <div class="ci-label">Address</div>
+          <div class="ci-val">Suzhou, Jiangsu Province, China</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">馃摓</div>
+        <div class="ci-text">
+          <div class="ci-label">Phone / TEL</div>
+          <div class="ci-val">+86 151 5806 8120</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">馃摟</div>
+        <div class="ci-text">
+          <div class="ci-label">Business E-mail</div>
+          <div class="ci-val">zhanghaibin18@126.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">馃晲</div>
+        <div class="ci-text">
+          <div class="ci-label">Business Hours</div>
+          <div class="ci-val">Mon 鈥?Fri &nbsp; 09:00 鈥?18:00 (CST)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name *</label>
+          <input type="text" placeholder="Enter your name" />
+        </div>
+        <div class="form-group">
+          <label>Phone *</label>
+          <input type="tel" placeholder="Enter your phone number" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Company</label>
+        <input type="text" placeholder="Your company name (optional)" />
+      </div>
+      <div class="form-group">
+        <label>Business Type</label>
+        <select>
+          <option value="">Please select</option>
+          <option>Non-Ferrous Ore Procurement</option>
+          <option>Scrap Metal Recycling</option>
+          <option>Supply Chain Partnership</option>
+          <option>Other Inquiries</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Please describe your requirements, metal types, quantities, etc."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Thank you for your message! We will get back to you shortly.')">Submit Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fn">Suzhou Yitu Technology Co., Ltd.</div>
+      <div class="fe">鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</div>
+      <p>Specializing in non-ferrous metal ore trading and scrap metal recycling, we deliver safe, efficient, and green metal resource solutions through our professional team and extensive supply chain.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Business</h4>
+      <ul>
+        <li><a href="#business">Non-Ferrous Ore Trading</a></li>
+        <li><a href="#business">Scrap Metal Recycling</a></li>
+        <li><a href="#business">Supply Chain Services</a></li>
+        <li><a href="#business">Import & Export</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#advantage">Advantages</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>漏 2026 Suzhou Yitu Technology Co., Ltd. All Rights Reserved.</span>
+    <span>鑻廔CP澶嘪XXXXXXX鍙?/span>
+  </div>
+</footer>
+
+</body>
+</html>

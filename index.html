@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</title>
+  <style>
+    /* ===== 鍏ㄥ眬閲嶇疆 ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      color: #2c2c2c;
+      background: #ffffff;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== 椤堕儴瀵艰埅 ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(10, 30, 60, 0.97);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 900; color: #0a1e3c;
+    }
+    .logo-text {
+      display: flex; flex-direction: column;
+    }
+    .logo-text .cn { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+    .logo-text .en { font-size: 10px; color: #c8a84b; letter-spacing: 2px; text-transform: uppercase; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 36px;
+    }
+    nav ul li a {
+      color: #ccd6f6;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.25s;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+    nav ul li a:hover {
+      color: #c8a84b;
+      border-bottom-color: #c8a84b;
+    }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(200,168,75,0.15);
+      border: 1px solid rgba(200,168,75,0.5);
+      color: #c8a84b;
+      font-size: 13px; font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .lang-btn:hover { background: rgba(200,168,75,0.28); }
+
+    /* ===== 鑻遍泟鍖?===== */
+    #hero {
+      height: 100vh;
+      background: linear-gradient(160deg, #0a1e3c 0%, #0d3060 50%, #0a2248 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 5%;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='rgba(200,168,75,0.08)' stroke-width='1'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200,168,75,0.15);
+      border: 1px solid rgba(200,168,75,0.4);
+      color: #c8a84b;
+      font-size: 12px;
+      letter-spacing: 3px;
+      padding: 6px 20px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero-title span { color: #c8a84b; }
+    .hero-subtitle {
+      font-size: clamp(15px, 2vw, 20px);
+      color: #a8b8d8;
+      margin-bottom: 48px;
+      max-width: 620px;
+      margin-left: auto; margin-right: auto;
+      line-height: 1.8;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      color: #0a1e3c;
+      font-weight: 700;
+      padding: 14px 38px;
+      border-radius: 30px;
+      font-size: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(200,168,75,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,168,75,0.5); }
+    .btn-outline {
+      border: 2px solid rgba(200,168,75,0.6);
+      color: #c8a84b;
+      padding: 12px 36px;
+      border-radius: 30px;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: rgba(200,168,75,0.1); }
+
+    /* 婊氬姩鎸囩ず */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(200,168,75,0.6); font-size: 11px; letter-spacing: 2px;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint::after {
+      content: "";
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, rgba(200,168,75,0.6), transparent);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== 鏁版嵁缁熻鏉?===== */
+    #stats {
+      background: linear-gradient(135deg, #c8a84b, #d4b45a);
+      padding: 40px 5%;
+    }
+    .stats-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-item .num {
+      font-size: 36px; font-weight: 800; color: #0a1e3c; line-height: 1;
+    }
+    .stat-item .unit { font-size: 16px; font-weight: 600; color: #0a1e3c; }
+    .stat-item .label { font-size: 13px; color: rgba(10,30,60,0.7); margin-top: 6px; }
+
+    /* ===== 閫氱敤 Section ===== */
+    section { padding: 90px 5%; }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-tag {
+      display: inline-block;
+      color: #c8a84b;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800;
+      color: #0a1e3c;
+      line-height: 1.3;
+    }
+    .section-title em { color: #c8a84b; font-style: normal; }
+    .section-desc {
+      font-size: 15px;
+      color: #666;
+      max-width: 560px;
+      margin: 16px auto 0;
+      line-height: 1.9;
+    }
+    .divider {
+      width: 50px; height: 3px;
+      background: linear-gradient(90deg, #c8a84b, #e8c96a);
+      border-radius: 2px;
+      margin: 16px auto 0;
+    }
+
+    /* ===== 涓氬姟鏉垮潡 ===== */
+    #business { background: #f7f8fc; }
+    .biz-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    .biz-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .biz-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #c8a84b, #e8c96a);
+    }
+    .biz-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .biz-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, rgba(200,168,75,0.12), rgba(232,201,106,0.2));
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px;
+      margin-bottom: 24px;
+    }
+    .biz-card h3 {
+      font-size: 20px; font-weight: 700; color: #0a1e3c; margin-bottom: 12px;
+    }
+    .biz-card p {
+      font-size: 14px; color: #666; line-height: 1.9;
+    }
+    .biz-tags {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px;
+    }
+    .tag {
+      background: rgba(200,168,75,0.1);
+      color: #a07820;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(200,168,75,0.3);
+    }
+
+    /* ===== 鍏充簬鎴戜滑 ===== */
+    #about {
+      background: #fff;
+    }
+    .about-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-box {
+      background: linear-gradient(145deg, #0a1e3c, #0d3060);
+      border-radius: 20px;
+      padding: 56px 40px;
+      text-align: center;
+      color: #fff;
+    }
+    .about-img-box .big-icon { font-size: 72px; margin-bottom: 20px; }
+    .about-img-box h3 { font-size: 22px; font-weight: 700; color: #c8a84b; margin-bottom: 8px; }
+    .about-img-box p { font-size: 13px; color: #a8b8d8; line-height: 1.8; }
+    .about-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      color: #0a1e3c;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 8px 24px rgba(200,168,75,0.4);
+      text-align: center;
+    }
+    .about-badge .yr { font-size: 28px; line-height: 1; display: block; }
+
+    .about-text .label { font-size: 12px; color: #c8a84b; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
+    .about-text h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: #0a1e3c; line-height: 1.3; margin-bottom: 20px; }
+    .about-text p { font-size: 14px; color: #555; line-height: 2; margin-bottom: 16px; }
+    .about-list { list-style: none; margin-top: 24px; }
+    .about-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 14px;
+      font-size: 14px; color: #444; line-height: 1.7;
+    }
+    .about-list li .check {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #0a1e3c; font-weight: 700;
+      margin-top: 2px;
+    }
+
+    /* ===== 浼樺娍 ===== */
+    #advantage { background: linear-gradient(160deg, #0a1e3c 0%, #0d3060 100%); }
+    #advantage .section-title { color: #fff; }
+    #advantage .section-tag { color: #c8a84b; }
+    #advantage .divider { background: linear-gradient(90deg, #c8a84b, transparent); }
+    .adv-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+    }
+    .adv-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,168,75,0.2);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .adv-card:hover {
+      background: rgba(200,168,75,0.08);
+      transform: translateY(-4px);
+    }
+    .adv-icon { font-size: 40px; margin-bottom: 16px; }
+    .adv-card h4 { font-size: 17px; font-weight: 700; color: #c8a84b; margin-bottom: 10px; }
+    .adv-card p { font-size: 13px; color: #a8b8d8; line-height: 1.9; }
+
+    /* ===== 鏈嶅姟娴佺▼ ===== */
+    #process { background: #f7f8fc; }
+    .process-steps {
+      max-width: 1000px; margin: 0 auto;
+      position: relative;
+    }
+    .process-steps::before {
+      content: "";
+      position: absolute;
+      top: 28px; left: calc(50% - 1px);
+      width: 2px; height: calc(100% - 56px);
+      background: linear-gradient(to bottom, #c8a84b, rgba(200,168,75,0.1));
+    }
+    .step {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+      align-items: flex-start;
+    }
+    .step:nth-child(even) { flex-direction: row-reverse; text-align: right; }
+    .step-num {
+      flex-shrink: 0;
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 800; color: #0a1e3c;
+      box-shadow: 0 4px 16px rgba(200,168,75,0.4);
+      position: relative; z-index: 1;
+    }
+    .step-content {
+      flex: 1;
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .step-content h4 { font-size: 17px; font-weight: 700; color: #0a1e3c; margin-bottom: 8px; }
+    .step-content p { font-size: 13px; color: #666; line-height: 1.8; }
+
+    /* ===== 鑱旂郴鎴戜滑 ===== */
+    #contact { background: #fff; }
+    .contact-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contact-info h3 { font-size: 22px; font-weight: 700; color: #0a1e3c; margin-bottom: 24px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .ci-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(200,168,75,0.12), rgba(232,201,106,0.2));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .ci-text .ci-label { font-size: 12px; color: #999; margin-bottom: 4px; }
+    .ci-text .ci-val { font-size: 15px; color: #222; font-weight: 600; }
+
+    .contact-form {
+      background: #f7f8fc;
+      border-radius: 20px;
+      padding: 40px 36px;
+    }
+    .contact-form h3 { font-size: 20px; font-weight: 700; color: #0a1e3c; margin-bottom: 28px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; font-weight: 500; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #333;
+      background: #fff;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #c8a84b;
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #c8a84b, #e8c96a);
+      color: #0a1e3c;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      font-family: inherit;
+    }
+    .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ===== 椤佃剼 ===== */
+    footer {
+      background: #060f20;
+      color: #a8b8d8;
+      padding: 56px 5% 28px;
+    }
+    .footer-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand .fn { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .footer-brand .fe { font-size: 11px; color: #c8a84b; letter-spacing: 2px; margin-bottom: 16px; }
+    .footer-brand p { font-size: 13px; line-height: 1.9; }
+    .footer-col h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { font-size: 13px; margin-bottom: 10px; }
+    .footer-col ul li a { color: #a8b8d8; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: #c8a84b; }
+    .footer-bottom {
+      max-width: 1100px; margin: 24px auto 0;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: #556;
+      flex-wrap: wrap; gap: 8px;
+    }
+
+    /* ===== 鍝嶅簲寮?===== */
+    @media (max-width: 900px) {
+      nav ul { gap: 20px; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .process-steps::before { display: none; }
+      .step, .step:nth-child(even) { flex-direction: column; text-align: left; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      #hero { padding: 0 6%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== 瀵艰埅 ===== -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">鎬?/div>
+    <div class="logo-text">
+      <span class="cn">鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</span>
+      <span class="en">Suzhou Yitu Technology Co., Ltd.</span>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#hero">棣栭〉</a></li>
+      <li><a href="#business">涓氬姟鑼冨洿</a></li>
+      <li><a href="#about">鍏充簬鎴戜滑</a></li>
+      <li><a href="#advantage">鏍稿績浼樺娍</a></li>
+      <li><a href="#process">鏈嶅姟娴佺▼</a></li>
+      <li><a href="contact.html">鑱旂郴鎴戜滑</a></li>
+    </ul>
+    <a href="index_en.html" class="lang-btn">馃寪 English</a>
+  </nav>
+
+</header>
+
+<!-- ===== 鑻遍泟鍖?===== -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">涓撴敞鏈夎壊閲戝睘 路 缁胯壊寰幆缁忔祹</div>
+    <h1 class="hero-title">鑻忓窞鎬￠€旂鎶€<span>鏈夐檺璐ｄ换鍏徃</span></h1>
+    <p class="hero-subtitle">
+      涓撲笟浠庝簨鏈夎壊閲戝睘鐭跨煶璐告槗涓庡簾鏃ч噾灞炲洖鏀朵笟鍔★紝渚濇墭瀹屽杽鐨勪緵搴旈摼缃戠粶涓庝笓涓氳祫璐紝
+      涓哄鎴锋彁渚涘畨鍏ㄣ€侀珮鏁堛€佸彲鎸佺画鐨勯噾灞炶祫婧愯В鍐虫柟妗堛€?
+    </p>
+    <div class="hero-btns">
+      <a href="#business" class="btn-primary">浜嗚В涓氬姟</a>
+      <a href="#contact" class="btn-outline">鑱旂郴鎴戜滑</a>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- ===== 鏁版嵁缁熻鏉?===== -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div><span class="num">100</span><span class="unit">+</span></div>
+      <div class="label">鍚堜綔浼欎即</div>
+    </div>
+    <div class="stat-item">
+      <div><span class="num">15</span><span class="unit">+</span></div>
+      <div class="label">瑕嗙洊璧勬簮鍝佺被</div>
+    </div>
+    <div class="stat-item">
+      <div><span class="num">24</span><span class="unit">h</span></div>
+      <div class="label">涓撲笟鍝嶅簲鏈嶅姟</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 涓氬姟鑼冨洿 ===== -->
+<section id="business">
+  <div class="section-header">
+    <span class="section-tag">Business Scope</span>
+    <h2 class="section-title">涓昏惀<em>涓氬姟鑼冨洿</em></h2>
+    <div class="divider"></div>
+    <p class="section-desc">浠ヤ笓涓氳兘鍔涘拰鍚堣缁忚惀涓哄熀纭€锛岃仛鐒︽湁鑹查噾灞炶祫婧愮殑娴侀€氫笌寰幆鍒╃敤锛屽姪鍔涗骇涓氶摼楂樻晥杩愯浆銆?/p>
+  </div>
+  <div class="biz-grid">
+
+    <div class="biz-card">
+      <div class="biz-icon">馃</div>
+      <h3>鏈夎壊閲戝睘鐭跨煶璐告槗</h3>
+      <p>涓撴敞浜庨摐銆侀摑銆侀攲銆侀搮銆侀晬銆侀敗绛変富瑕佹湁鑹查噾灞炵熆鐭崇殑鍥藉唴澶栬锤鏄撱€傚嚟鍊熺ǔ瀹氱殑鐭挎簮娓犻亾鍜屼笓涓氱殑鐗╂祦浣撶郴锛屾彁渚涗粠閲囪喘銆佷粨鍌ㄥ埌閰嶉€佺殑鍏ㄩ摼鏉℃湇鍔★紝淇濋殰璐ф簮绋冲畾涓庤川閲忓彲鎺с€?/p>
+      <div class="biz-tags">
+        <span class="tag">閾滅熆鐭?/span>
+        <span class="tag">閾濈熆鐭?/span>
+        <span class="tag">閿岀熆</span>
+        <span class="tag">閾呯熆</span>
+        <span class="tag">闀嶇熆</span>
+        <span class="tag">閿＄熆</span>
+        <span class="tag">绋€鏈夐噾灞?/span>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-icon">鈾伙笍</div>
+      <h3>搴熸棫閲戝睘鍥炴敹璐告槗</h3>
+      <p>浠ョ豢鑹插惊鐜悊蹇典负鏍稿績锛岀郴缁熷紑灞曢摐銆侀摑銆佷笉閿堥挗绛夊簾鏃ч噾灞炵殑涓撲笟鍥炴敹銆佸垎绫汇€佹娴嬩笌閿€鍞笟鍔°€備緷鎵樿鑼冪殑鍥炴敹缃戠粶鍜屾棤瀹冲寲澶勭悊鑳藉姏锛屾帹鍔ㄥ啀鐢熻祫婧愮殑楂樻晥鍒╃敤銆?/p>
+      <div class="biz-tags">
+        <span class="tag">搴熼摐鍥炴敹</span>
+        <span class="tag">搴熼摑鍥炴敹</span>
+        <span class="tag">涓嶉攬閽㈠簾鏂?/span>
+        <span class="tag">搴熼搮钃勭數姹?/span>
+        <span class="tag">鐢靛瓙搴熸枡</span>
+        <span class="tag">宸ヤ笟杈硅鏂?/span>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-icon">馃寪</div>
+      <h3>渚涘簲閾剧患鍚堟湇鍔?/h3>
+      <p>鏁村悎鍥藉唴澶栬祫婧愭笭閬擄紝鎻愪緵甯傚満琛屾儏鍒嗘瀽銆佽锤鏄撴挳鍚堛€佺墿娴侀厤濂椼€佽川妫€璁よ瘉绛夊叏娴佺▼澧炲€兼湇鍔★紝甯姪瀹㈡埛闄嶄綆閲囪喘鎴愭湰锛屾彁鍗囪祫婧愬埄鐢ㄦ晥鐜囷紝瀹炵幇渚涘簲閾剧鐞嗙殑绮剧粏鍖栦笌绋冲畾鍖栥€?/p>
+      <div class="biz-tags">
+        <span class="tag">杩涘嚭鍙ｈ锤鏄?/span>
+        <span class="tag">琛屾儏鍜ㄨ</span>
+        <span class="tag">璐ㄦ璁よ瘉</span>
+        <span class="tag">鐗╂祦閰嶅</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 鍏充簬鎴戜滑 ===== -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-img-box">
+        <div class="big-icon">馃彮</div>
+        <h3>鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</h3>
+        <p>娉ㄥ唽鍦帮細姹熻嫃鐪佽嫃宸炲競<br/>涓撴敞鏈夎壊閲戝睘璧勬簮璐告槗涓庡簾鏃ч噾灞炲洖鏀?br/>瀹堟硶缁忚惀 路 璇氫俊鍚堣 路 缁胯壊鍙戝睍</p>
+      </div>
+      <div class="about-badge"><span class="yr">10+</span>骞?br/>琛屼笟缁忛獙</div>
+    </div>
+    <div class="about-text">
+      <div class="label">About Us</div>
+      <h2>涓撲笟璧勬簮璐告槗锛?br/>椹卞姩缁胯壊寰幆</h2>
+      <p>鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃鎴愮珛浜庤嫃宸烇紝鏄竴瀹朵笓娉ㄦ湁鑹查噾灞炵熆鐭宠锤鏄撲笌搴熸棫閲戝睘鍥炴敹鐨勪笓涓氫紒涓氥€傚叕鍙哥鎵?璇氫俊缁忚惀銆佺豢鑹插惊鐜€佸叡璧㈠彂灞?鐨勬牳蹇冪悊蹇碉紝渚濇墭鑻忓窞鍙婇暱涓夎鍦板尯鐨勫尯浣嶄紭鍔匡紝閫愭寤虹珛璧疯鐩栫熆婧愭笭閬撱€佸簾鏂欏洖鏀躲€佽锤鏄撴祦閫氱殑瀹屾暣涓氬姟閾炬潯銆?/p>
+      <p>鍏徃鎷ユ湁涓撲笟鐨勮涓氬洟闃熷拰瀹屽杽鐨勫悎瑙勪綋绯伙紝涓ユ牸閬靛畧鍥藉鏈夊叧搴熸棫閲戝睘鍥炴敹鍜屾湁鑹查噾灞炶锤鏄撶殑娉曞緥娉曡锛岀Н鏋佸饱琛屼紒涓氱幆淇濊矗浠伙紝鏄帹鍔ㄩ噾灞炶祫婧愬惊鐜埄鐢ㄣ€佽返琛岀豢鑹茬粡娴庣殑琛屼笟鍙備笌鑰呫€?/p>
+      <ul class="about-list">
+        <li><div class="check">鉁?/div>鍏峰鏈夎壊閲戝睘鐭夸骇璧勬簮杩涘嚭鍙ｈ祫璐紝璐ф簮绋冲畾鍙潬</li>
+        <li><div class="check">鉁?/div>瀹屽杽鐨勫簾鏃ч噾灞炲洖鏀惰祫璐ㄤ笌鐜繚鍚堣浣撶郴</li>
+        <li><div class="check">鉁?/div>闀夸笁瑙掑畬鍠勭殑浠撳偍銆佺墿娴佷笌閰嶉€佺綉缁?/li>
+        <li><div class="check">鉁?/div>缁忛獙涓板瘜鐨勪笓涓氬洟闃燂紝鎻愪緵绮惧噯甯傚満鍒嗘瀽涓庢湇鍔℃敮鎸?/li>
+        <li><div class="check">鉁?/div>100+琛屼笟鍚堜綔浼欎即锛屼緵搴旈摼绋冲畾楂樻晥</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 鏍稿績浼樺娍 ===== -->
+<section id="advantage">
+  <div class="section-header">
+    <span class="section-tag">Core Advantages</span>
+    <h2 class="section-title" style="color:#fff;">鎴戜滑鐨?em>鏍稿績浼樺娍</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="adv-grid">
+    <div class="adv-card">
+      <div class="adv-icon">馃敆</div>
+      <h4>绋冲畾璧勬簮娓犻亾</h4>
+      <p>涓庡浗鍐呭浼樿川鐭垮北鍙婂洖鏀剁珯闀挎湡鍚堜綔锛岃揣婧愬厖瓒崇ǔ瀹氾紝纭繚渚涘簲閾惧畨鍏ㄥ彲闈犮€?/p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃洝锔?/div>
+      <h4>鍚堣缁忚惀浣撶郴</h4>
+      <p>涓ユ牸閬靛畧鍥藉娉曡锛屽叿澶囬綈鍏ㄧ殑缁忚惀璁稿彲涓庣幆淇濊祫璐紝淇濋殰鍚堣鍚堟硶杩愯惀銆?/p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃敩</div>
+      <h4>涓撲笟妫€娴嬭兘鍔?/h4>
+      <p>閰嶅悎鏉冨▉妫€娴嬫満鏋勫閲戝睘鎴愯壊涓庡搧璐ㄨ繘琛岀簿鍑嗘娴嬶紝淇濋殰浜ゆ槗鐨勫叕姝ｄ笌閫忔槑銆?/p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃殯</div>
+      <h4>楂樻晥鐗╂祦閰嶅</h4>
+      <p>鏁村悎闀夸笁瑙掔墿娴佽祫婧愶紝鎻愪緵浠撳偍銆佽鍗搞€佽繍杈撳叏绋嬮厤濂楋紝淇濋殰璐х墿瀹夊叏鍙婃椂浜や粯銆?/p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃搳</div>
+      <h4>琛屾儏鐮斿垽鍒嗘瀽</h4>
+      <p>涓撲笟鍥㈤槦鎸佺画璺熻釜鍏ㄧ悆閲戝睘甯傚満鍔ㄦ€侊紝涓哄鎴锋彁渚涘墠鐬绘€ц鎯呭垎鏋愪笌閲囪喘寤鸿銆?/p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">馃尡</div>
+      <h4>缁胯壊寰幆鐞嗗康</h4>
+      <p>浠ユ帹鍔ㄩ噾灞炶祫婧愬惊鐜埄鐢ㄤ负浣垮懡锛岀Н鏋佽返琛岀豢鑹插彂灞曪紝鍔╁姏瀹㈡埛灞ヨESG璐ｄ换銆?/p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 鏈嶅姟娴佺▼ ===== -->
+<section id="process">
+  <div class="section-header">
+    <span class="section-tag">Service Process</span>
+    <h2 class="section-title">涓撲笟<em>鏈嶅姟娴佺▼</em></h2>
+    <div class="divider"></div>
+    <p class="section-desc">閫忔槑銆侀珮鏁堛€佷笓涓氱殑鏈嶅姟娴佺▼锛屽叏绋嬮櫔浼达紝淇濋殰姣忎竴绗斾氦鏄撻『鐣呰惤鍦般€?/p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>闇€姹傛唇璋堜笌璇勪及</h4>
+        <p>涓庡鎴锋繁鍏ユ矡閫氾紝鏄庣‘閲囪喘鎴栧洖鏀剁殑閲戝睘鍝佺被銆佽鏍笺€佹暟閲忓強璐ㄩ噺瑕佹眰锛屽畬鎴愬墠鏈熻瘎浼般€?/p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>璐ф簮鍖归厤涓庢姤浠?/h4>
+        <p>渚濇墭渚涘簲閾剧綉缁滅簿鍑嗗尮閰嶈揣婧愶紝缁撳悎甯傚満琛屾儏鎻愪緵鍚堢悊閫忔槑鐨勬姤浠锋柟妗堛€?/p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>璐ㄦ涓庡悎鍚岀缃?/h4>
+        <p>濮旀墭涓撲笟鏈烘瀯杩涜璐ㄩ噺妫€娴嬩笌瀹氱骇锛屽弻鏂圭‘璁ゅ悗姝ｅ紡绛捐浜ゆ槗鍚堝悓锛屼繚闅滄潈鐩娿€?/p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h4>鐗╂祦杩愯緭涓庝氦浠?/h4>
+        <p>鍗忚皟浠撳偍銆佽杩愩€佽繍杈撳叏閾炬潯锛屽叏绋嬭拷韪揣鐗╃姸鎬侊紝纭繚瀹夊叏鍑嗘椂浜や粯銆?/p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h4>鍞悗鏈嶅姟涓庡洖璁?/h4>
+        <p>浜や粯瀹屾垚鍚庢寔缁窡杩涘鎴峰弽棣堬紝鎻愪緵鍚庣画鍜ㄨ涓庢湇鍔℃敮鎸侊紝寤虹珛闀挎湡鍚堜綔鍏崇郴銆?/p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 鑱旂郴鎴戜滑 ===== -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-tag">Contact Us</span>
+    <h2 class="section-title">鑱旂郴<em>鎴戜滑</em></h2>
+    <div class="divider"></div>
+    <p class="section-desc">娆㈣繋涓庢垜浠唇璋堝悎浣滐紝鎴戜滑鐨勪笓涓氬洟闃熷皢鍦ㄧ涓€鏃堕棿鍥炲鎮ㄣ€?/p>
+  </div>
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h3>鑱旂郴鏂瑰紡</h3>
+      <div class="contact-item">
+        <div class="ci-icon">馃搷</div>
+        <div class="ci-text">
+          <div class="ci-label">鍏徃鍦板潃</div>
+          <div class="ci-val">姹熻嫃鐪佽嫃宸炲競</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">馃摓</div>
+        <div class="ci-text">
+          <div class="ci-label">鑱旂郴鐢佃瘽</div>
+          <div class="ci-val">15158068120</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">馃摟</div>
+        <div class="ci-text">
+          <div class="ci-label">鍟嗗姟閭</div>
+          <div class="ci-val">zhanghaibin18@126.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">馃晲</div>
+        <div class="ci-text">
+          <div class="ci-label">宸ヤ綔鏃堕棿</div>
+          <div class="ci-val">鍛ㄤ竴鑷冲懆浜?09:00 鈥?18:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>鍦ㄧ嚎鐣欒█</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>鎮ㄧ殑濮撳悕 *</label>
+          <input type="text" placeholder="璇疯緭鍏ュ鍚? />
+        </div>
+        <div class="form-group">
+          <label>鑱旂郴鐢佃瘽 *</label>
+          <input type="tel" placeholder="璇疯緭鍏ユ墜鏈哄彿" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>鍏徃鍚嶇О</label>
+        <input type="text" placeholder="璇疯緭鍏ュ叕鍙稿悕绉帮紙閫夊～锛? />
+      </div>
+      <div class="form-group">
+        <label>涓氬姟闇€姹?/label>
+        <select>
+          <option value="">璇烽€夋嫨涓氬姟绫诲瀷</option>
+          <option>鏈夎壊閲戝睘鐭跨煶閲囪喘</option>
+          <option>搴熸棫閲戝睘鍥炴敹</option>
+          <option>渚涘簲閾惧悎浣?/option>
+          <option>鍏朵粬鍜ㄨ</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>鐣欒█鍐呭</label>
+        <textarea placeholder="璇锋弿杩版偍鐨勫叿浣撻渶姹傛垨闂锛屾垜浠皢灏藉揩涓庢偍鑱旂郴鈥?></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('鎰熻阿鎮ㄧ殑鐣欒█锛佹垜浠皢灏藉揩涓庢偍鑱旂郴銆?)">鎻愪氦鐣欒█</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 椤佃剼 ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fn">鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</div>
+      <div class="fe">Suzhou Yitu Technology Co., Ltd.</div>
+      <p>涓撴敞鏈夎壊閲戝睘鐭跨煶璐告槗涓庡簾鏃ч噾灞炲洖鏀讹紝渚濇墭涓板瘜鐨勮涓氳祫婧愪笌涓撲笟鍥㈤槦锛屼负瀹㈡埛鎻愪緵瀹夊叏銆侀珮鏁堛€佺豢鑹茬殑閲戝睘璧勬簮缁煎悎鏈嶅姟銆?/p>
+    </div>
+    <div class="footer-col">
+      <h4>涓氬姟鑼冨洿</h4>
+      <ul>
+        <li><a href="#business">鏈夎壊閲戝睘鐭跨煶璐告槗</a></li>
+        <li><a href="#business">搴熸棫閲戝睘鍥炴敹</a></li>
+        <li><a href="#business">渚涘簲閾剧患鍚堟湇鍔?/a></li>
+        <li><a href="#business">杩涘嚭鍙ｈ锤鏄?/a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>蹇€熷鑸?/h4>
+      <ul>
+        <li><a href="#about">鍏充簬鎴戜滑</a></li>
+        <li><a href="#advantage">鏍稿績浼樺娍</a></li>
+        <li><a href="#process">鏈嶅姟娴佺▼</a></li>
+        <li><a href="#contact">鑱旂郴鎴戜滑</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>漏 2026 鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃 鐗堟潈鎵€鏈?/span>
+    <span>鑻廔CP澶嘪XXXXXXX鍙?/span>
+  </div>
+</footer>
+
+</body>
+</html>

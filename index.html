@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</title>
+  <title>苏州怡途科技有限责任公司</title>
   <style>
-    /* ===== 鍏ㄥ眬閲嶇疆 ===== */
+    /* ===== 全局重置 ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -16,7 +16,7 @@
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
 
-    /* ===== 椤堕儴瀵艰埅 ===== */
+    /* ===== 顶部导航 ===== */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -80,7 +80,7 @@
     }
     .lang-btn:hover { background: rgba(200,168,75,0.28); }
 
-    /* ===== 鑻遍泟鍖?===== */
+    /* ===== 英雄区 ===== */
     #hero {
       height: 100vh;
       background: linear-gradient(160deg, #0a1e3c 0%, #0d3060 50%, #0a2248 100%);
@@ -148,7 +148,7 @@
     }
     .btn-outline:hover { background: rgba(200,168,75,0.1); }
 
-    /* 婊氬姩鎸囩ず */
+    /* 滚动指示 */
     .scroll-hint {
       position: absolute;
       bottom: 32px; left: 50%;
@@ -167,7 +167,7 @@
       50% { transform: translateX(-50%) translateY(8px); }
     }
 
-    /* ===== 鏁版嵁缁熻鏉?===== */
+    /* ===== 数据统计条 ===== */
     #stats {
       background: linear-gradient(135deg, #c8a84b, #d4b45a);
       padding: 40px 5%;
@@ -185,7 +185,7 @@
     .stat-item .unit { font-size: 16px; font-weight: 600; color: #0a1e3c; }
     .stat-item .label { font-size: 13px; color: rgba(10,30,60,0.7); margin-top: 6px; }
 
-    /* ===== 閫氱敤 Section ===== */
+    /* ===== 通用 Section ===== */
     section { padding: 90px 5%; }
     .section-header {
       text-align: center;
@@ -221,7 +221,7 @@
       margin: 16px auto 0;
     }
 
-    /* ===== 涓氬姟鏉垮潡 ===== */
+    /* ===== 业务板块 ===== */
     #business { background: #f7f8fc; }
     .biz-grid {
       max-width: 1200px; margin: 0 auto;
@@ -272,7 +272,7 @@
       border: 1px solid rgba(200,168,75,0.3);
     }
 
-    /* ===== 鍏充簬鎴戜滑 ===== */
+    /* ===== 关于我们 ===== */
     #about {
       background: #fff;
     }
@@ -329,7 +329,7 @@
       margin-top: 2px;
     }
 
-    /* ===== 浼樺娍 ===== */
+    /* ===== 优势 ===== */
     #advantage { background: linear-gradient(160deg, #0a1e3c 0%, #0d3060 100%); }
     #advantage .section-title { color: #fff; }
     #advantage .section-tag { color: #c8a84b; }
@@ -356,7 +356,7 @@
     .adv-card h4 { font-size: 17px; font-weight: 700; color: #c8a84b; margin-bottom: 10px; }
     .adv-card p { font-size: 13px; color: #a8b8d8; line-height: 1.9; }
 
-    /* ===== 鏈嶅姟娴佺▼ ===== */
+    /* ===== 服务流程 ===== */
     #process { background: #f7f8fc; }
     .process-steps {
       max-width: 1000px; margin: 0 auto;
@@ -396,7 +396,7 @@
     .step-content h4 { font-size: 17px; font-weight: 700; color: #0a1e3c; margin-bottom: 8px; }
     .step-content p { font-size: 13px; color: #666; line-height: 1.8; }
 
-    /* ===== 鑱旂郴鎴戜滑 ===== */
+    /* ===== 联系我们 ===== */
     #contact { background: #fff; }
     .contact-inner {
       max-width: 1100px; margin: 0 auto;
@@ -468,7 +468,7 @@
     }
     .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
 
-    /* ===== 椤佃剼 ===== */
+    /* ===== 页脚 ===== */
     footer {
       background: #060f20;
       color: #a8b8d8;
@@ -497,7 +497,7 @@
       flex-wrap: wrap; gap: 8px;
     }
 
-    /* ===== 鍝嶅簲寮?===== */
+    /* ===== 响应式 ===== */
     @media (max-width: 900px) {
       nav ul { gap: 20px; }
       .about-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -515,339 +515,339 @@
 </head>
 <body>
 
-<!-- ===== 瀵艰埅 ===== -->
+<!-- ===== 导航 ===== -->
 <header>
   <div class="logo">
-    <div class="logo-icon">鎬?/div>
+    <div class="logo-icon">怡</div>
     <div class="logo-text">
-      <span class="cn">鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</span>
+      <span class="cn">苏州怡途科技有限责任公司</span>
       <span class="en">Suzhou Yitu Technology Co., Ltd.</span>
     </div>
   </div>
   <nav>
     <ul>
-      <li><a href="#hero">棣栭〉</a></li>
-      <li><a href="#business">涓氬姟鑼冨洿</a></li>
-      <li><a href="#about">鍏充簬鎴戜滑</a></li>
-      <li><a href="#advantage">鏍稿績浼樺娍</a></li>
-      <li><a href="#process">鏈嶅姟娴佺▼</a></li>
-      <li><a href="contact.html">鑱旂郴鎴戜滑</a></li>
+      <li><a href="#hero">首页</a></li>
+      <li><a href="#business">业务范围</a></li>
+      <li><a href="#about">关于我们</a></li>
+      <li><a href="#advantage">核心优势</a></li>
+      <li><a href="#process">服务流程</a></li>
+      <li><a href="contact.html">联系我们</a></li>
     </ul>
-    <a href="index_en.html" class="lang-btn">馃寪 English</a>
+    <a href="index_en.html" class="lang-btn">🌐 English</a>
   </nav>
 
 </header>
 
-<!-- ===== 鑻遍泟鍖?===== -->
+<!-- ===== 英雄区 ===== -->
 <section id="hero">
   <div class="hero-content">
-    <div class="hero-badge">涓撴敞鏈夎壊閲戝睘 路 缁胯壊寰幆缁忔祹</div>
-    <h1 class="hero-title">鑻忓窞鎬￠€旂鎶€<span>鏈夐檺璐ｄ换鍏徃</span></h1>
+    <div class="hero-badge">专注有色金属 · 绿色循环经济</div>
+    <h1 class="hero-title">苏州怡途科技<span>有限责任公司</span></h1>
     <p class="hero-subtitle">
-      涓撲笟浠庝簨鏈夎壊閲戝睘鐭跨煶璐告槗涓庡簾鏃ч噾灞炲洖鏀朵笟鍔★紝渚濇墭瀹屽杽鐨勪緵搴旈摼缃戠粶涓庝笓涓氳祫璐紝
-      涓哄鎴锋彁渚涘畨鍏ㄣ€侀珮鏁堛€佸彲鎸佺画鐨勯噾灞炶祫婧愯В鍐虫柟妗堛€?
+      专业从事有色金属矿石贸易与废旧金属回收业务，依托完善的供应链网络与专业资质，
+      为客户提供安全、高效、可持续的金属资源解决方案。
     </p>
     <div class="hero-btns">
-      <a href="#business" class="btn-primary">浜嗚В涓氬姟</a>
-      <a href="#contact" class="btn-outline">鑱旂郴鎴戜滑</a>
+      <a href="#business" class="btn-primary">了解业务</a>
+      <a href="#contact" class="btn-outline">联系我们</a>
     </div>
   </div>
   <div class="scroll-hint">SCROLL</div>
 </section>
 
-<!-- ===== 鏁版嵁缁熻鏉?===== -->
+<!-- ===== 数据统计条 ===== -->
 <div id="stats">
   <div class="stats-grid">
     <div class="stat-item">
       <div><span class="num">100</span><span class="unit">+</span></div>
-      <div class="label">鍚堜綔浼欎即</div>
+      <div class="label">合作伙伴</div>
     </div>
     <div class="stat-item">
       <div><span class="num">15</span><span class="unit">+</span></div>
-      <div class="label">瑕嗙洊璧勬簮鍝佺被</div>
+      <div class="label">覆盖资源品类</div>
     </div>
     <div class="stat-item">
       <div><span class="num">24</span><span class="unit">h</span></div>
-      <div class="label">涓撲笟鍝嶅簲鏈嶅姟</div>
+      <div class="label">专业响应服务</div>
     </div>
   </div>
 </div>
 
-<!-- ===== 涓氬姟鑼冨洿 ===== -->
+<!-- ===== 业务范围 ===== -->
 <section id="business">
   <div class="section-header">
     <span class="section-tag">Business Scope</span>
-    <h2 class="section-title">涓昏惀<em>涓氬姟鑼冨洿</em></h2>
+    <h2 class="section-title">主营<em>业务范围</em></h2>
     <div class="divider"></div>
-    <p class="section-desc">浠ヤ笓涓氳兘鍔涘拰鍚堣缁忚惀涓哄熀纭€锛岃仛鐒︽湁鑹查噾灞炶祫婧愮殑娴侀€氫笌寰幆鍒╃敤锛屽姪鍔涗骇涓氶摼楂樻晥杩愯浆銆?/p>
+    <p class="section-desc">以专业能力和合规经营为基础，聚焦有色金属资源的流通与循环利用，助力产业链高效运转。</p>
   </div>
   <div class="biz-grid">
 
     <div class="biz-card">
-      <div class="biz-icon">馃</div>
-      <h3>鏈夎壊閲戝睘鐭跨煶璐告槗</h3>
-      <p>涓撴敞浜庨摐銆侀摑銆侀攲銆侀搮銆侀晬銆侀敗绛変富瑕佹湁鑹查噾灞炵熆鐭崇殑鍥藉唴澶栬锤鏄撱€傚嚟鍊熺ǔ瀹氱殑鐭挎簮娓犻亾鍜屼笓涓氱殑鐗╂祦浣撶郴锛屾彁渚涗粠閲囪喘銆佷粨鍌ㄥ埌閰嶉€佺殑鍏ㄩ摼鏉℃湇鍔★紝淇濋殰璐ф簮绋冲畾涓庤川閲忓彲鎺с€?/p>
+      <div class="biz-icon">🪨</div>
+      <h3>有色金属矿石贸易</h3>
+      <p>专注于铜、铝、锌、铅、镍、锡等主要有色金属矿石的国内外贸易。凭借稳定的矿源渠道和专业的物流体系，提供从采购、仓储到配送的全链条服务，保障货源稳定与质量可控。</p>
       <div class="biz-tags">
-        <span class="tag">閾滅熆鐭?/span>
-        <span class="tag">閾濈熆鐭?/span>
-        <span class="tag">閿岀熆</span>
-        <span class="tag">閾呯熆</span>
-        <span class="tag">闀嶇熆</span>
-        <span class="tag">閿＄熆</span>
-        <span class="tag">绋€鏈夐噾灞?/span>
+        <span class="tag">铜矿石</span>
+        <span class="tag">铝矿石</span>
+        <span class="tag">锌矿</span>
+        <span class="tag">铅矿</span>
+        <span class="tag">镍矿</span>
+        <span class="tag">锡矿</span>
+        <span class="tag">稀有金属</span>
       </div>
     </div>
 
     <div class="biz-card">
-      <div class="biz-icon">鈾伙笍</div>
-      <h3>搴熸棫閲戝睘鍥炴敹璐告槗</h3>
-      <p>浠ョ豢鑹插惊鐜悊蹇典负鏍稿績锛岀郴缁熷紑灞曢摐銆侀摑銆佷笉閿堥挗绛夊簾鏃ч噾灞炵殑涓撲笟鍥炴敹銆佸垎绫汇€佹娴嬩笌閿€鍞笟鍔°€備緷鎵樿鑼冪殑鍥炴敹缃戠粶鍜屾棤瀹冲寲澶勭悊鑳藉姏锛屾帹鍔ㄥ啀鐢熻祫婧愮殑楂樻晥鍒╃敤銆?/p>
+      <div class="biz-icon">♻️</div>
+      <h3>废旧金属回收贸易</h3>
+      <p>以绿色循环理念为核心，系统开展铜、铝、不锈钢等废旧金属的专业回收、分类、检测与销售业务。依托规范的回收网络和无害化处理能力，推动再生资源的高效利用。</p>
       <div class="biz-tags">
-        <span class="tag">搴熼摐鍥炴敹</span>
-        <span class="tag">搴熼摑鍥炴敹</span>
-        <span class="tag">涓嶉攬閽㈠簾鏂?/span>
-        <span class="tag">搴熼搮钃勭數姹?/span>
-        <span class="tag">鐢靛瓙搴熸枡</span>
-        <span class="tag">宸ヤ笟杈硅鏂?/span>
+        <span class="tag">废铜回收</span>
+        <span class="tag">废铝回收</span>
+        <span class="tag">不锈钢废料</span>
+        <span class="tag">废铅蓄电池</span>
+        <span class="tag">电子废料</span>
+        <span class="tag">工业边角料</span>
       </div>
     </div>
 
     <div class="biz-card">
-      <div class="biz-icon">馃寪</div>
-      <h3>渚涘簲閾剧患鍚堟湇鍔?/h3>
-      <p>鏁村悎鍥藉唴澶栬祫婧愭笭閬擄紝鎻愪緵甯傚満琛屾儏鍒嗘瀽銆佽锤鏄撴挳鍚堛€佺墿娴侀厤濂椼€佽川妫€璁よ瘉绛夊叏娴佺▼澧炲€兼湇鍔★紝甯姪瀹㈡埛闄嶄綆閲囪喘鎴愭湰锛屾彁鍗囪祫婧愬埄鐢ㄦ晥鐜囷紝瀹炵幇渚涘簲閾剧鐞嗙殑绮剧粏鍖栦笌绋冲畾鍖栥€?/p>
+      <div class="biz-icon">🌐</div>
+      <h3>供应链综合服务</h3>
+      <p>整合国内外资源渠道，提供市场行情分析、贸易撮合、物流配套、质检认证等全流程增值服务，帮助客户降低采购成本，提升资源利用效率，实现供应链管理的精细化与稳定化。</p>
       <div class="biz-tags">
-        <span class="tag">杩涘嚭鍙ｈ锤鏄?/span>
-        <span class="tag">琛屾儏鍜ㄨ</span>
-        <span class="tag">璐ㄦ璁よ瘉</span>
-        <span class="tag">鐗╂祦閰嶅</span>
+        <span class="tag">进出口贸易</span>
+        <span class="tag">行情咨询</span>
+        <span class="tag">质检认证</span>
+        <span class="tag">物流配套</span>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ===== 鍏充簬鎴戜滑 ===== -->
+<!-- ===== 关于我们 ===== -->
 <section id="about">
   <div class="about-inner">
     <div class="about-visual">
       <div class="about-img-box">
-        <div class="big-icon">馃彮</div>
-        <h3>鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</h3>
-        <p>娉ㄥ唽鍦帮細姹熻嫃鐪佽嫃宸炲競<br/>涓撴敞鏈夎壊閲戝睘璧勬簮璐告槗涓庡簾鏃ч噾灞炲洖鏀?br/>瀹堟硶缁忚惀 路 璇氫俊鍚堣 路 缁胯壊鍙戝睍</p>
+        <div class="big-icon">🏭</div>
+        <h3>苏州怡途科技有限责任公司</h3>
+        <p>注册地：江苏省苏州市<br/>专注有色金属资源贸易与废旧金属回收<br/>守法经营 · 诚信合规 · 绿色发展</p>
       </div>
-      <div class="about-badge"><span class="yr">10+</span>骞?br/>琛屼笟缁忛獙</div>
+      <div class="about-badge"><span class="yr">10+</span>年<br/>行业经验</div>
     </div>
     <div class="about-text">
       <div class="label">About Us</div>
-      <h2>涓撲笟璧勬簮璐告槗锛?br/>椹卞姩缁胯壊寰幆</h2>
-      <p>鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃鎴愮珛浜庤嫃宸烇紝鏄竴瀹朵笓娉ㄦ湁鑹查噾灞炵熆鐭宠锤鏄撲笌搴熸棫閲戝睘鍥炴敹鐨勪笓涓氫紒涓氥€傚叕鍙哥鎵?璇氫俊缁忚惀銆佺豢鑹插惊鐜€佸叡璧㈠彂灞?鐨勬牳蹇冪悊蹇碉紝渚濇墭鑻忓窞鍙婇暱涓夎鍦板尯鐨勫尯浣嶄紭鍔匡紝閫愭寤虹珛璧疯鐩栫熆婧愭笭閬撱€佸簾鏂欏洖鏀躲€佽锤鏄撴祦閫氱殑瀹屾暣涓氬姟閾炬潯銆?/p>
-      <p>鍏徃鎷ユ湁涓撲笟鐨勮涓氬洟闃熷拰瀹屽杽鐨勫悎瑙勪綋绯伙紝涓ユ牸閬靛畧鍥藉鏈夊叧搴熸棫閲戝睘鍥炴敹鍜屾湁鑹查噾灞炶锤鏄撶殑娉曞緥娉曡锛岀Н鏋佸饱琛屼紒涓氱幆淇濊矗浠伙紝鏄帹鍔ㄩ噾灞炶祫婧愬惊鐜埄鐢ㄣ€佽返琛岀豢鑹茬粡娴庣殑琛屼笟鍙備笌鑰呫€?/p>
+      <h2>专业资源贸易，<br/>驱动绿色循环</h2>
+      <p>苏州怡途科技有限责任公司成立于苏州，是一家专注有色金属矿石贸易与废旧金属回收的专业企业。公司秉承"诚信经营、绿色循环、共赢发展"的核心理念，依托苏州及长三角地区的区位优势，逐步建立起覆盖矿源渠道、废料回收、贸易流通的完整业务链条。</p>
+      <p>公司拥有专业的行业团队和完善的合规体系，严格遵守国家有关废旧金属回收和有色金属贸易的法律法规，积极履行企业环保责任，是推动金属资源循环利用、践行绿色经济的行业参与者。</p>
       <ul class="about-list">
-        <li><div class="check">鉁?/div>鍏峰鏈夎壊閲戝睘鐭夸骇璧勬簮杩涘嚭鍙ｈ祫璐紝璐ф簮绋冲畾鍙潬</li>
-        <li><div class="check">鉁?/div>瀹屽杽鐨勫簾鏃ч噾灞炲洖鏀惰祫璐ㄤ笌鐜繚鍚堣浣撶郴</li>
-        <li><div class="check">鉁?/div>闀夸笁瑙掑畬鍠勭殑浠撳偍銆佺墿娴佷笌閰嶉€佺綉缁?/li>
-        <li><div class="check">鉁?/div>缁忛獙涓板瘜鐨勪笓涓氬洟闃燂紝鎻愪緵绮惧噯甯傚満鍒嗘瀽涓庢湇鍔℃敮鎸?/li>
-        <li><div class="check">鉁?/div>100+琛屼笟鍚堜綔浼欎即锛屼緵搴旈摼绋冲畾楂樻晥</li>
+        <li><div class="check">✓</div>具备有色金属矿产资源进出口资质，货源稳定可靠</li>
+        <li><div class="check">✓</div>完善的废旧金属回收资质与环保合规体系</li>
+        <li><div class="check">✓</div>长三角完善的仓储、物流与配送网络</li>
+        <li><div class="check">✓</div>经验丰富的专业团队，提供精准市场分析与服务支持</li>
+        <li><div class="check">✓</div>100+行业合作伙伴，供应链稳定高效</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ===== 鏍稿績浼樺娍 ===== -->
+<!-- ===== 核心优势 ===== -->
 <section id="advantage">
   <div class="section-header">
     <span class="section-tag">Core Advantages</span>
-    <h2 class="section-title" style="color:#fff;">鎴戜滑鐨?em>鏍稿績浼樺娍</em></h2>
+    <h2 class="section-title" style="color:#fff;">我们的<em>核心优势</em></h2>
     <div class="divider"></div>
   </div>
   <div class="adv-grid">
     <div class="adv-card">
-      <div class="adv-icon">馃敆</div>
-      <h4>绋冲畾璧勬簮娓犻亾</h4>
-      <p>涓庡浗鍐呭浼樿川鐭垮北鍙婂洖鏀剁珯闀挎湡鍚堜綔锛岃揣婧愬厖瓒崇ǔ瀹氾紝纭繚渚涘簲閾惧畨鍏ㄥ彲闈犮€?/p>
+      <div class="adv-icon">🔗</div>
+      <h4>稳定资源渠道</h4>
+      <p>与国内外优质矿山及回收站长期合作，货源充足稳定，确保供应链安全可靠。</p>
     </div>
     <div class="adv-card">
-      <div class="adv-icon">馃洝锔?/div>
-      <h4>鍚堣缁忚惀浣撶郴</h4>
-      <p>涓ユ牸閬靛畧鍥藉娉曡锛屽叿澶囬綈鍏ㄧ殑缁忚惀璁稿彲涓庣幆淇濊祫璐紝淇濋殰鍚堣鍚堟硶杩愯惀銆?/p>
+      <div class="adv-icon">🛡️</div>
+      <h4>合规经营体系</h4>
+      <p>严格遵守国家法规，具备齐全的经营许可与环保资质，保障合规合法运营。</p>
     </div>
     <div class="adv-card">
-      <div class="adv-icon">馃敩</div>
-      <h4>涓撲笟妫€娴嬭兘鍔?/h4>
-      <p>閰嶅悎鏉冨▉妫€娴嬫満鏋勫閲戝睘鎴愯壊涓庡搧璐ㄨ繘琛岀簿鍑嗘娴嬶紝淇濋殰浜ゆ槗鐨勫叕姝ｄ笌閫忔槑銆?/p>
+      <div class="adv-icon">🔬</div>
+      <h4>专业检测能力</h4>
+      <p>配合权威检测机构对金属成色与品质进行精准检测，保障交易的公正与透明。</p>
     </div>
     <div class="adv-card">
-      <div class="adv-icon">馃殯</div>
-      <h4>楂樻晥鐗╂祦閰嶅</h4>
-      <p>鏁村悎闀夸笁瑙掔墿娴佽祫婧愶紝鎻愪緵浠撳偍銆佽鍗搞€佽繍杈撳叏绋嬮厤濂楋紝淇濋殰璐х墿瀹夊叏鍙婃椂浜や粯銆?/p>
+      <div class="adv-icon">🚛</div>
+      <h4>高效物流配套</h4>
+      <p>整合长三角物流资源，提供仓储、装卸、运输全程配套，保障货物安全及时交付。</p>
     </div>
     <div class="adv-card">
-      <div class="adv-icon">馃搳</div>
-      <h4>琛屾儏鐮斿垽鍒嗘瀽</h4>
-      <p>涓撲笟鍥㈤槦鎸佺画璺熻釜鍏ㄧ悆閲戝睘甯傚満鍔ㄦ€侊紝涓哄鎴锋彁渚涘墠鐬绘€ц鎯呭垎鏋愪笌閲囪喘寤鸿銆?/p>
+      <div class="adv-icon">📊</div>
+      <h4>行情研判分析</h4>
+      <p>专业团队持续跟踪全球金属市场动态，为客户提供前瞻性行情分析与采购建议。</p>
     </div>
     <div class="adv-card">
-      <div class="adv-icon">馃尡</div>
-      <h4>缁胯壊寰幆鐞嗗康</h4>
-      <p>浠ユ帹鍔ㄩ噾灞炶祫婧愬惊鐜埄鐢ㄤ负浣垮懡锛岀Н鏋佽返琛岀豢鑹插彂灞曪紝鍔╁姏瀹㈡埛灞ヨESG璐ｄ换銆?/p>
+      <div class="adv-icon">🌱</div>
+      <h4>绿色循环理念</h4>
+      <p>以推动金属资源循环利用为使命，积极践行绿色发展，助力客户履行ESG责任。</p>
     </div>
   </div>
 </section>
 
-<!-- ===== 鏈嶅姟娴佺▼ ===== -->
+<!-- ===== 服务流程 ===== -->
 <section id="process">
   <div class="section-header">
     <span class="section-tag">Service Process</span>
-    <h2 class="section-title">涓撲笟<em>鏈嶅姟娴佺▼</em></h2>
+    <h2 class="section-title">专业<em>服务流程</em></h2>
     <div class="divider"></div>
-    <p class="section-desc">閫忔槑銆侀珮鏁堛€佷笓涓氱殑鏈嶅姟娴佺▼锛屽叏绋嬮櫔浼达紝淇濋殰姣忎竴绗斾氦鏄撻『鐣呰惤鍦般€?/p>
+    <p class="section-desc">透明、高效、专业的服务流程，全程陪伴，保障每一笔交易顺畅落地。</p>
   </div>
   <div class="process-steps">
     <div class="step">
       <div class="step-num">01</div>
       <div class="step-content">
-        <h4>闇€姹傛唇璋堜笌璇勪及</h4>
-        <p>涓庡鎴锋繁鍏ユ矡閫氾紝鏄庣‘閲囪喘鎴栧洖鏀剁殑閲戝睘鍝佺被銆佽鏍笺€佹暟閲忓強璐ㄩ噺瑕佹眰锛屽畬鎴愬墠鏈熻瘎浼般€?/p>
+        <h4>需求洽谈与评估</h4>
+        <p>与客户深入沟通，明确采购或回收的金属品类、规格、数量及质量要求，完成前期评估。</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <div class="step-content">
-        <h4>璐ф簮鍖归厤涓庢姤浠?/h4>
-        <p>渚濇墭渚涘簲閾剧綉缁滅簿鍑嗗尮閰嶈揣婧愶紝缁撳悎甯傚満琛屾儏鎻愪緵鍚堢悊閫忔槑鐨勬姤浠锋柟妗堛€?/p>
+        <h4>货源匹配与报价</h4>
+        <p>依托供应链网络精准匹配货源，结合市场行情提供合理透明的报价方案。</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">03</div>
       <div class="step-content">
-        <h4>璐ㄦ涓庡悎鍚岀缃?/h4>
-        <p>濮旀墭涓撲笟鏈烘瀯杩涜璐ㄩ噺妫€娴嬩笌瀹氱骇锛屽弻鏂圭‘璁ゅ悗姝ｅ紡绛捐浜ゆ槗鍚堝悓锛屼繚闅滄潈鐩娿€?/p>
+        <h4>质检与合同签署</h4>
+        <p>委托专业机构进行质量检测与定级，双方确认后正式签订交易合同，保障权益。</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">04</div>
       <div class="step-content">
-        <h4>鐗╂祦杩愯緭涓庝氦浠?/h4>
-        <p>鍗忚皟浠撳偍銆佽杩愩€佽繍杈撳叏閾炬潯锛屽叏绋嬭拷韪揣鐗╃姸鎬侊紝纭繚瀹夊叏鍑嗘椂浜や粯銆?/p>
+        <h4>物流运输与交付</h4>
+        <p>协调仓储、装运、运输全链条，全程追踪货物状态，确保安全准时交付。</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">05</div>
       <div class="step-content">
-        <h4>鍞悗鏈嶅姟涓庡洖璁?/h4>
-        <p>浜や粯瀹屾垚鍚庢寔缁窡杩涘鎴峰弽棣堬紝鎻愪緵鍚庣画鍜ㄨ涓庢湇鍔℃敮鎸侊紝寤虹珛闀挎湡鍚堜綔鍏崇郴銆?/p>
+        <h4>售后服务与回访</h4>
+        <p>交付完成后持续跟进客户反馈，提供后续咨询与服务支持，建立长期合作关系。</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 鑱旂郴鎴戜滑 ===== -->
+<!-- ===== 联系我们 ===== -->
 <section id="contact">
   <div class="section-header">
     <span class="section-tag">Contact Us</span>
-    <h2 class="section-title">鑱旂郴<em>鎴戜滑</em></h2>
+    <h2 class="section-title">联系<em>我们</em></h2>
     <div class="divider"></div>
-    <p class="section-desc">娆㈣繋涓庢垜浠唇璋堝悎浣滐紝鎴戜滑鐨勪笓涓氬洟闃熷皢鍦ㄧ涓€鏃堕棿鍥炲鎮ㄣ€?/p>
+    <p class="section-desc">欢迎与我们洽谈合作，我们的专业团队将在第一时间回复您。</p>
   </div>
   <div class="contact-inner">
     <div class="contact-info">
-      <h3>鑱旂郴鏂瑰紡</h3>
+      <h3>联系方式</h3>
       <div class="contact-item">
-        <div class="ci-icon">馃搷</div>
+        <div class="ci-icon">📍</div>
         <div class="ci-text">
-          <div class="ci-label">鍏徃鍦板潃</div>
-          <div class="ci-val">姹熻嫃鐪佽嫃宸炲競</div>
+          <div class="ci-label">公司地址</div>
+          <div class="ci-val">江苏省苏州市</div>
         </div>
       </div>
       <div class="contact-item">
-        <div class="ci-icon">馃摓</div>
+        <div class="ci-icon">📞</div>
         <div class="ci-text">
-          <div class="ci-label">鑱旂郴鐢佃瘽</div>
+          <div class="ci-label">联系电话</div>
           <div class="ci-val">15158068120</div>
         </div>
       </div>
       <div class="contact-item">
-        <div class="ci-icon">馃摟</div>
+        <div class="ci-icon">📧</div>
         <div class="ci-text">
-          <div class="ci-label">鍟嗗姟閭</div>
+          <div class="ci-label">商务邮箱</div>
           <div class="ci-val">zhanghaibin18@126.com</div>
         </div>
       </div>
       <div class="contact-item">
-        <div class="ci-icon">馃晲</div>
+        <div class="ci-icon">🕐</div>
         <div class="ci-text">
-          <div class="ci-label">宸ヤ綔鏃堕棿</div>
-          <div class="ci-val">鍛ㄤ竴鑷冲懆浜?09:00 鈥?18:00</div>
+          <div class="ci-label">工作时间</div>
+          <div class="ci-val">周一至周五 09:00 – 18:00</div>
         </div>
       </div>
     </div>
 
     <div class="contact-form">
-      <h3>鍦ㄧ嚎鐣欒█</h3>
+      <h3>在线留言</h3>
       <div class="form-row">
         <div class="form-group">
-          <label>鎮ㄧ殑濮撳悕 *</label>
-          <input type="text" placeholder="璇疯緭鍏ュ鍚? />
+          <label>您的姓名 *</label>
+          <input type="text" placeholder="请输入姓名" />
         </div>
         <div class="form-group">
-          <label>鑱旂郴鐢佃瘽 *</label>
-          <input type="tel" placeholder="璇疯緭鍏ユ墜鏈哄彿" />
+          <label>联系电话 *</label>
+          <input type="tel" placeholder="请输入手机号" />
         </div>
       </div>
       <div class="form-group">
-        <label>鍏徃鍚嶇О</label>
-        <input type="text" placeholder="璇疯緭鍏ュ叕鍙稿悕绉帮紙閫夊～锛? />
+        <label>公司名称</label>
+        <input type="text" placeholder="请输入公司名称（选填）" />
       </div>
       <div class="form-group">
-        <label>涓氬姟闇€姹?/label>
+        <label>业务需求</label>
         <select>
-          <option value="">璇烽€夋嫨涓氬姟绫诲瀷</option>
-          <option>鏈夎壊閲戝睘鐭跨煶閲囪喘</option>
-          <option>搴熸棫閲戝睘鍥炴敹</option>
-          <option>渚涘簲閾惧悎浣?/option>
-          <option>鍏朵粬鍜ㄨ</option>
+          <option value="">请选择业务类型</option>
+          <option>有色金属矿石采购</option>
+          <option>废旧金属回收</option>
+          <option>供应链合作</option>
+          <option>其他咨询</option>
         </select>
       </div>
       <div class="form-group">
-        <label>鐣欒█鍐呭</label>
-        <textarea placeholder="璇锋弿杩版偍鐨勫叿浣撻渶姹傛垨闂锛屾垜浠皢灏藉揩涓庢偍鑱旂郴鈥?></textarea>
+        <label>留言内容</label>
+        <textarea placeholder="请描述您的具体需求或问题，我们将尽快与您联系…"></textarea>
       </div>
-      <button class="form-submit" onclick="alert('鎰熻阿鎮ㄧ殑鐣欒█锛佹垜浠皢灏藉揩涓庢偍鑱旂郴銆?)">鎻愪氦鐣欒█</button>
+      <button class="form-submit" onclick="alert('感谢您的留言！我们将尽快与您联系。')">提交留言</button>
     </div>
   </div>
 </section>
 
-<!-- ===== 椤佃剼 ===== -->
+<!-- ===== 页脚 ===== -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="fn">鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃</div>
+      <div class="fn">苏州怡途科技有限责任公司</div>
       <div class="fe">Suzhou Yitu Technology Co., Ltd.</div>
-      <p>涓撴敞鏈夎壊閲戝睘鐭跨煶璐告槗涓庡簾鏃ч噾灞炲洖鏀讹紝渚濇墭涓板瘜鐨勮涓氳祫婧愪笌涓撲笟鍥㈤槦锛屼负瀹㈡埛鎻愪緵瀹夊叏銆侀珮鏁堛€佺豢鑹茬殑閲戝睘璧勬簮缁煎悎鏈嶅姟銆?/p>
+      <p>专注有色金属矿石贸易与废旧金属回收，依托丰富的行业资源与专业团队，为客户提供安全、高效、绿色的金属资源综合服务。</p>
     </div>
     <div class="footer-col">
-      <h4>涓氬姟鑼冨洿</h4>
+      <h4>业务范围</h4>
       <ul>
-        <li><a href="#business">鏈夎壊閲戝睘鐭跨煶璐告槗</a></li>
-        <li><a href="#business">搴熸棫閲戝睘鍥炴敹</a></li>
-        <li><a href="#business">渚涘簲閾剧患鍚堟湇鍔?/a></li>
-        <li><a href="#business">杩涘嚭鍙ｈ锤鏄?/a></li>
+        <li><a href="#business">有色金属矿石贸易</a></li>
+        <li><a href="#business">废旧金属回收</a></li>
+        <li><a href="#business">供应链综合服务</a></li>
+        <li><a href="#business">进出口贸易</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>蹇€熷鑸?/h4>
+      <h4>快速导航</h4>
       <ul>
-        <li><a href="#about">鍏充簬鎴戜滑</a></li>
-        <li><a href="#advantage">鏍稿績浼樺娍</a></li>
-        <li><a href="#process">鏈嶅姟娴佺▼</a></li>
-        <li><a href="#contact">鑱旂郴鎴戜滑</a></li>
+        <li><a href="#about">关于我们</a></li>
+        <li><a href="#advantage">核心优势</a></li>
+        <li><a href="#process">服务流程</a></li>
+        <li><a href="#contact">联系我们</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>漏 2026 鑻忓窞鎬￠€旂鎶€鏈夐檺璐ｄ换鍏徃 鐗堟潈鎵€鏈?/span>
-    <span>鑻廔CP澶嘪XXXXXXX鍙?/span>
+    <span>© 2026 苏州怡途科技有限责任公司 版权所有</span>
+    <span>苏ICP备XXXXXXXX号</span>
   </div>
 </footer>
 
